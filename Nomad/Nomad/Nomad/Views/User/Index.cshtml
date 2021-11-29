@@ -1,0 +1,104 @@
+﻿@model IEnumerable<Nomad.Models.UserModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table id="tblUsers" class="table">
+    <thead>
+    <th>
+        @Html.DisplayNameFor(model => model.Type)
+    </th>
+    <th>
+        @Html.DisplayNameFor(model => model.FirstName)
+    </th>
+    <th>
+        @Html.DisplayNameFor(model => model.MiddleName)
+    </th>
+    <th>
+        @Html.DisplayNameFor(model => model.LastName)
+    </th>
+    <th>
+        @Html.DisplayNameFor(model => model.Email)
+    </th>
+    <th>
+        @Html.DisplayNameFor(model => model.Username)
+    </th>
+    <th>
+        @Html.DisplayNameFor(model => model.Password)
+    </th>
+    <th>
+        @Html.DisplayNameFor(model => model.Mobile)
+    </th>
+    <th>
+        @Html.DisplayNameFor(model => model.Status)
+    </th>
+    <th>
+        @Html.DisplayNameFor(model => model.DateCreated)
+    </th>
+
+    <th></th>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Type)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FirstName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MiddleName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LastName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Username)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Password)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Mobile)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Status)
+                </td>
+                <td>
+                    @item.DateCreated.ToString("yyyy-MMM-dd hh:mm tt")
+                </td>
+
+                <td>
+                    <!--Which Webpage, Link to Controller, ITEM TO PUT IN-->
+                    <a href="@Url.Action("Details","Users", new { id = item.UserID })"
+                       class="btn btn-xs btn-success" title="View Details">
+                        <i class="fa fa-edit"></i>
+                    </a>
+                    <a href="@Url.Action("Delete","Users", new { id = item.UserID })"
+                       class="btn btn-xs btn-danger" title="Archive Record"
+                       onclick='return confirm("For real??");'>
+                        <!--This is so you can add a confirm-->
+                        <i class="fa fa-trash-o"></i>
+                    </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+
+</table>
+<script>
+    $(document).ready(function () {
+        $('#tblUsers').DataTable();
+    });
+</script>
